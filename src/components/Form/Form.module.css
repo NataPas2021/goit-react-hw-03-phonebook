@@ -1,0 +1,18 @@
+.label {
+    display: block;
+}
+
+.input {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.addButton {
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+
+.addButton:hover {
+ background-color: lightgray;
+ scale: 1.1;
+}
