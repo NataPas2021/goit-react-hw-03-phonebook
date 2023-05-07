@@ -19,13 +19,14 @@ export class App extends Component {
 
   componentDidMount(){
     console.log('MOUNT');
-    console.log(localStorage.getItem(LS_KEY));
+    const contactItems = this.state.contacts;
+    console.log(Object.values(contactItems))
+    
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if(prevState.contacts !== this.setState.contacts) {
-      localStorage.setItem(LS_KEY, this.state.contacts)
-    }
+    console.log('component did update')
+    
   }
   
   addContact = ({name, number}) => {
