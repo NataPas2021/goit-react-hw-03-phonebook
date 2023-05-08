@@ -5,7 +5,8 @@ import ContactsList from './Contacts/ContactsList';
 import { nanoid } from 'nanoid';
 import Filter from './Filter/Filter';
 
-const LS_KEY = 'local_storage_item';
+const LS_KEY = "contact";
+console.log(LS_KEY)
 export class App extends Component {
   state = {
     contacts: [
@@ -19,15 +20,33 @@ export class App extends Component {
 
   componentDidMount(){
     console.log('MOUNT');
-    const contactItems = this.state.contacts;
-    console.log(Object.values(contactItems))
+    const savedState = localStorage.getItem(LS_KEY);
+    console.log(savedState);
+    if(savedState) {
+      this.setState({contacts: JSON.parse(savedState)})
+    }
     
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    console.log('component did update')
+  componentDidUpdate(_, prevState) {
     
-  }
+    const {contacts} = this.state;
+    contacts.map(contact => {
+      console.log(contact)
+      return (
+      this.setState(prevState => {
+        if(prevState.contacts !== contacts) {
+          localStorage.setItem(LS_KEY, JSON.stringify(contact))
+        }
+      
+       console.log('component did update')
+       
+     })
+      )
+     
+    
+  })
+}
   
   addContact = ({name, number}) => {
     const existName = this.state.contacts
@@ -44,9 +63,13 @@ export class App extends Component {
       number
     }
 
+    localStorage.setItem(LS_KEY, JSON.stringify(newContact));
+    
     this.setState(({contacts}) => ({
       contacts: [newContact, ...contacts],
-    }))
+    }
+    
+    ))
   }
   };
 
