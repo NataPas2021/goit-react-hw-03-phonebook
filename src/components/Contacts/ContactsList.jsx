@@ -7,16 +7,15 @@ const ContactsList = ({contacts, deleteContact}) => {
     <ul>
         {contacts.map(({id, name, number}) => {
          return (
-            <div className={css.container}>
-              <li className={css.contact}
-                 key={id}>
+              <li key={id}
+                  className={css.contact}
+                 >
                 {name}: {number}
                 <button type='button'
                  className={css.deleteButton}
                  onClick={()=> deleteContact(id)}>Delete
                 </button>
               </li>
-           </div>
          )
         })
         } 

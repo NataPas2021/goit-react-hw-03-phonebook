@@ -1,11 +1,7 @@
-.container {
-    display: flex;
-    margin-bottom: 3px;
-}
-
 .contact {
     color: darkgray;
     margin-right: 8px;
+    margin-bottom: 3px;
 }
 
 .deleteButton {
